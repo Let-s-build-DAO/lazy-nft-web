@@ -32,10 +32,10 @@ const HeaderNav = () => {
       </div>
       {isOpen && (
         <div className='absolute z-10 top-16 left-0 w-full mp-10 bg-[#150824] flex flex-col items-center md:hidden'>
-          <div className='my-4 text-sm '>
+          <div onClick={() => setIsOpen(false)} className='my-4 text-sm '>
             <Link href={'/'}>Home</Link>
           </div>
-          <div className='my-4 text-sm'>
+          <div onClick={() => setIsOpen(false)} className='my-4 text-sm'>
             <Link href={'/marketplace'}>Marketplace</Link>
           </div>
           <button className='p-2 text-sm px-6 rounded-full border-2 border-[#40196C] mb-6'>Connect Wallet</button>

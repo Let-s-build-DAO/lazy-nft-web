@@ -1,13 +1,20 @@
 'use client'
 
 import Trending from '@/components/Trending';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import OwlCarousel from 'react-owl-carousel';
 import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel/dist/assets/owl.theme.default.css';
+import $ from 'jquery';
 
 const Marketplace = () => {
   const [active, setActive] = useState("all")
+  useEffect(() => {
+    // Ensure jQuery is available globally
+    if (typeof window !== 'undefined') {
+      window.$ = window.jQuery = $;
+    }
+  }, []);
   return (
     <div>
       <section className='my-16'>
