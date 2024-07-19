@@ -1,15 +1,27 @@
 'use client'
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { MenuIcon, XIcon } from '@heroicons/react/outline'; // Assuming you use Heroicons
 import Link from 'next/link';
+import { useWeb3Modal } from '@web3modal/wagmi/react'
+import { useAccount } from 'wagmi'
+import { useDisconnect } from 'wagmi'
 
 const HeaderNav = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { open, close } = useWeb3Modal()
+  const account = useAccount()
+  const [dropdown, setDropdown] = useState(false)
+  const { disconnect } = useDisconnect()
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
+
+  useEffect(() => {
+    if (account.status === 'connected') {
+    }
+  }, [account])
 
   return (
     <header className='p-4 lg:px-10 flex justify-between items-center'>
@@ -23,7 +35,10 @@ const HeaderNav = () => {
         <div className='my-auto text-sm'>
           <Link href={'/marketplace'}>Marketplace</Link>
         </div>
-        <button className='p-4 text-sm px-6 rounded-full border-2 border-[#40196C]'>Connect Wallet</button>
+        {account.isConnected ? <button onClick={() => setDropdown(!dropdown)} className='border-2 border-[#40196C] w-40 px-6 flex p-3 rounded-full'>
+          <img className='w-6 mr-2' src="/images/MetaMask.png" alt="" />
+          <p className='text-clip overflow-hidden'>{account.address}</p>
+        </button> : <button onClick={() => open()} className='p-4 text-sm px-6 rounded-full border-2 border-[#40196C]'>Connect Wallet</button>}
       </div>
       <div className='md:hidden my-auto'>
         <button onClick={toggleMenu} className='focus:outline-none '>
@@ -38,9 +53,21 @@ const HeaderNav = () => {
           <div onClick={() => toggleMenu()} className='my-4 text-sm'>
             <Link href={'/marketplace'}>Marketplace</Link>
           </div>
-          <button className='p-2 text-sm px-6 rounded-full border-2 border-[#40196C] mb-6'>Connect Wallet</button>
+          {account.isConnected ? <button onClick={() => { toggleMenu(); setDropdown(!dropdown) }} className='border-2 mb-6 border-[#40196C] w-40 px-6 flex p-3 rounded-full'>
+            <img className='w-6 mr-2' src="/images/MetaMask.png" alt="" />
+            <p className='text-clip overflow-hidden'>{account.address}</p>
+          </button> : <button onClick={() => open()} className='p-4 text-sm px-6 rounded-full mb-6 border-2 border-[#40196C]'>Connect Wallet</button>}
         </div>
       )}
+      {dropdown && <div className='bg-[#0D0516] lg:w-72 w-[90%] border-2 border-[#40196C] p-4 rounded-xl fixed top-20 lg:right-20 right-4'>
+        <button onClick={() => setDropdown(false)} className='float-right'><XIcon className='h-6 w-6' /></button>
+        <p className='font-bold mt-6 text-lg'>My Wallet</p>
+        <div className='flex my-6'>
+          <img src="/images/NFT-icon.png" alt="" />
+          <p className='text-xxm ml-3'>My Purchased NFTs</p>
+        </div>
+        <button onClick={() => disconnect()} className='p-4 text-sm px-6 w-full rounded-full border-2 border-[#40196C]'>Disconnect</button>
+      </div>}
     </header>
   );
 };
