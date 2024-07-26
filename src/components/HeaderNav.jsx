@@ -28,9 +28,12 @@ const HeaderNav = () => {
       <Link href={'/'}>
         <img src="/images/LABSS.png" alt="Logo" className='h-8' />
       </Link>
-      <div className='hidden md:flex w-[30%] justify-between'>
+      <div className='hidden md:flex w-[40%] justify-between'>
         <div className='my-auto text-sm'>
           <Link href={'/'}>Home</Link>
+        </div>
+        <div className='my-auto text-sm'>
+          <Link href={'/claim'}>Claim NFT</Link>
         </div>
         <div className='my-auto text-sm'>
           <Link href={'/marketplace'}>Marketplace</Link>
@@ -52,6 +55,9 @@ const HeaderNav = () => {
           </div>
           <div onClick={() => toggleMenu()} className='my-4 text-sm'>
             <Link href={'/marketplace'}>Marketplace</Link>
+          </div>
+          <div onClick={() => toggleMenu()} className='my-4 text-sm '>
+            <Link href={'/claim'}>Clain NFT</Link>
           </div>
           {account.isConnected ? <button onClick={() => { toggleMenu(); setDropdown(!dropdown) }} className='border-2 mb-6 border-[#40196C] w-40 px-6 flex p-3 rounded-full'>
             <img className='w-6 mr-2' src="/images/MetaMask.png" alt="" />
