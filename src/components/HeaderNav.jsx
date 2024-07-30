@@ -19,7 +19,7 @@ const HeaderNav = () => {
   const { disconnect } = useDisconnect()
 
   const toggleMenu = async () => {
-    // setIsOpen(!isOpen);
+    setIsOpen(!isOpen);
     
   };
   
