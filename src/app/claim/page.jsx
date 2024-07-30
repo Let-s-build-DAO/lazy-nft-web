@@ -2,11 +2,11 @@
 
 import Card from '@/components/Card';
 import React, { useEffect, useState } from 'react';
-import { ethers } from "ethers";
-import LazyAbi from '../../utils/marketPlaceAbi'
-import { provider } from '../../components/HeaderNav'
-import { marketPlaceAddress } from '../../components/HeaderNav'
+import MARKETPLACE_ABI from '@/utils/marketPlaceAbi';
+import { MARKETPLACE_CONTRACT } from '@/config/constants';
+import { writeContract } from '@wagmi/core'
 import Modal from '@/components/Modal';
+import { config } from '@/utils/wagmi';
 
 
 const Claim = () => {
@@ -14,13 +14,13 @@ const Claim = () => {
   const [modal, setModal] = useState(false)
 
 
-  const contract = new ethers.Contract(marketPlaceAddress, LazyAbi, provider)
   // console.log(contract)
 
   const getClaimable = async () => {
-    const data = await contract.fetchClaimableItems()
-    // console.log(data)
-    setClaimable(data)
+    // const data = await contract.fetchClaimableItems()
+    // // console.log(data)
+    // setClaimable(data)
+  
   }
 
   useEffect(() => {
@@ -28,9 +28,16 @@ const Claim = () => {
   }, [])
 
   const claimNft = async () => {
-    const claimId = ethers.utils.formatUnits(claimable[0].itemId, 18)
-    const data = await contract.claimNft(claimId)
-    console.log(data)
+    const result = await writeContract(config, {
+      abi: MARKETPLACE_ABI,
+      address: MARKETPLACE_CONTRACT,
+      functionName: 'claimNft',
+      args: [
+        1n,
+      ],
+    })
+
+    console.log(result)
     setModal(true)
   }
 

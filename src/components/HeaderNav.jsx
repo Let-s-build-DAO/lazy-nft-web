@@ -4,13 +4,12 @@ import React, { useState, useEffect } from 'react';
 import { MenuIcon, XIcon } from '@heroicons/react/outline'; // Assuming you use Heroicons
 import Link from 'next/link';
 import { useWeb3Modal } from '@web3modal/wagmi/react'
-import { useDisconnect, useAccount } from 'wagmi'
-import { ethers } from "ethers";
-import LazyAbi from '../utils/marketPlaceAbi'
-const { ethereum } = window
+import { useDisconnect, useAccount, } from 'wagmi'
+import { readContract } from '@wagmi/core'
+import MarkeplaceAbi from '../utils/marketPlaceAbi'
+import { MARKETPLACE_CONTRACT } from '@/config/constants';
+import { config } from '@/utils/wagmi';
 
-export const provider = new ethers.providers.JsonRpcProvider('https://rpc.sepolia-api.lisk.com')
-export const marketPlaceAddress = '0x35841e7AeF3dF083eFF01332e301489c3E202392'
 
 const HeaderNav = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -19,16 +18,32 @@ const HeaderNav = () => {
   const [dropdown, setDropdown] = useState(false)
   const { disconnect } = useDisconnect()
 
-  // const contract = new ethers.Contract(marketPlaceAddress, LazyAbi, provider)
-  // console.log(contract)
-
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
+  const toggleMenu = async () => {
+    // setIsOpen(!isOpen);
+    
   };
+  
+
+  const fetchItem = async () => {
+    const result = await readContract(config, {
+      abi: MarkeplaceAbi,
+      address: MARKETPLACE_CONTRACT,
+      functionName: 'fetchClaimableItems',
+    })
+
+    console.log(result)
+  }
+
+
+  const connectWallet = async() => {
+    open()
+  }
 
   useEffect(() => {
     if (account.status === 'connected') {
     }
+    // console.log(data.status)
+    fetchItem()
   }, [account])
 
   return (
@@ -49,7 +64,7 @@ const HeaderNav = () => {
         {account.isConnected ? <button onClick={() => setDropdown(!dropdown)} className='border-2 border-[#40196C] w-40 px-6 flex p-3 rounded-full'>
           <img className='w-6 mr-2' src="/images/MetaMask.png" alt="" />
           <p className='text-clip overflow-hidden'>{account.address}</p>
-        </button> : <button onClick={() => open()} className='p-4 text-sm px-6 rounded-full border-2 border-[#40196C]'>Connect Wallet</button>}
+        </button> : <button onClick={() => connectWallet()} className='p-4 text-sm px-6 rounded-full border-2 border-[#40196C]'>Connect Wallet</button>}
       </div>
       <div className='md:hidden my-auto'>
         <button onClick={toggleMenu} className='focus:outline-none '>
@@ -82,6 +97,7 @@ const HeaderNav = () => {
         </div>
         <button onClick={() => disconnect()} className='p-4 text-sm px-6 w-full rounded-full border-2 border-[#40196C]'>Disconnect</button>
       </div>}
+      {/* Error: {error.message} */}
     </header>
   );
 };
