@@ -4,8 +4,13 @@ import React, { useState, useEffect } from 'react';
 import { MenuIcon, XIcon } from '@heroicons/react/outline'; // Assuming you use Heroicons
 import Link from 'next/link';
 import { useWeb3Modal } from '@web3modal/wagmi/react'
-import { useAccount } from 'wagmi'
-import { useDisconnect } from 'wagmi'
+import { useDisconnect, useAccount } from 'wagmi'
+import { ethers } from "ethers";
+import LazyAbi from '../utils/marketPlaceAbi'
+const { ethereum } = window
+
+export const provider = new ethers.providers.JsonRpcProvider('https://rpc.sepolia-api.lisk.com')
+export const marketPlaceAddress = '0x35841e7AeF3dF083eFF01332e301489c3E202392'
 
 const HeaderNav = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -13,6 +18,9 @@ const HeaderNav = () => {
   const account = useAccount()
   const [dropdown, setDropdown] = useState(false)
   const { disconnect } = useDisconnect()
+
+  // const contract = new ethers.Contract(marketPlaceAddress, LazyAbi, provider)
+  // console.log(contract)
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
