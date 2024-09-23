@@ -8,7 +8,7 @@ const Card = ({ claimNft }) => {
     <div className='card lg:w-[24%]'>
       <img className='w-full' src="/images/academy.png" alt="NFT" />
       <div>
-        <h2 className='text-xl mb-1 mt-2 font-bold'>Test NFT #001</h2>
+        <h2 className='text-xl mb-1 mt-2 font-bold'>LBD NFT #001</h2>
         <p className='text-xs mb-4'>by LBD Team</p>
         <div className='flex mb-2 justify-between'>
           {/* <p className='text-sm'>Current Price</p>
