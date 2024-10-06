@@ -80,7 +80,7 @@ const HeaderNav = () => {
             <Link href={'/marketplace'}>Marketplace</Link>
           </div>
           <div onClick={() => toggleMenu()} className='my-4 text-sm '>
-            <Link href={'/claim'}>Clain NFT</Link>
+            <Link href={'/claim'}>Claim NFT</Link>
           </div>
           {account.isConnected ? <button onClick={() => { toggleMenu(); setDropdown(!dropdown) }} className='border-2 mb-6 border-[#40196C] w-40 px-6 flex p-3 rounded-full'>
             <img className='w-6 mr-2' src="/images/MetaMask.png" alt="" />
