@@ -3,12 +3,17 @@
 import React, { useState, useEffect } from 'react';
 import { MenuIcon, XIcon } from '@heroicons/react/outline';
 import Link from 'next/link';
-import { useWeb3Modal } from '@web3modal/wagmi/react';
+// import { useWeb3Modal } from '@web3modal/wagmi/react';
 import { useDisconnect, useAccount } from 'wagmi';
 import { readContract } from '@wagmi/core';
 import MarkeplaceAbi from '../utils/marketPlaceAbi';
 import { MARKETPLACE_CONTRACT } from '@/config/constants';
 import { config } from '@/utils/wagmi';
+
+const { useWeb3Modal} = dynamic(
+  () => import("@web3modal/wagmi/react").then((mod) => mod.Web3Modal),
+  { ssr: false }
+);
 
 const HeaderNav = () => {
   const [menuOpen, setMenuOpen] = useState(false);
