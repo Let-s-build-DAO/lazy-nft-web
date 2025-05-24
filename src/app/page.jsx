@@ -1,5 +1,10 @@
 import Claim from "@/components/Claim";
-import Hero from "@/components/Hero";
+// import Hero from "@/components/Hero";
+import dynamic from 'next/dynamic';
+
+const Hero = dynamic(() => import('@/components/Hero'), { 
+  ssr: false, // Disable SSR for this component
+});
 import Trending from "@/components/Trending";
 import Image from "next/image";
 

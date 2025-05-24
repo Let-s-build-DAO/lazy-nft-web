@@ -10,11 +10,6 @@ import MarkeplaceAbi from '../utils/marketPlaceAbi';
 import { MARKETPLACE_CONTRACT } from '@/config/constants';
 import { config } from '@/utils/wagmi';
 
-// import dynamic from 'next/dynamic';
-// const { useWeb3Modal} = dynamic(
-//   () => import("@web3modal/wagmi/react").then((mod) => mod.useWeb3Modal),
-//   { ssr: false }
-// );
 
 const HeaderNav = () => {
   const [menuOpen, setMenuOpen] = useState(false);
