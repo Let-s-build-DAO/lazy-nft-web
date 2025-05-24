@@ -10,6 +10,7 @@ import MarkeplaceAbi from '../utils/marketPlaceAbi';
 import { MARKETPLACE_CONTRACT } from '@/config/constants';
 import { config } from '@/utils/wagmi';
 
+import dynamic from 'next/dynamic';
 const { useWeb3Modal} = dynamic(
   () => import("@web3modal/wagmi/react").then((mod) => mod.Web3Modal),
   { ssr: false }
