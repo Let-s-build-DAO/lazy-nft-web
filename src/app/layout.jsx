@@ -1,11 +1,12 @@
-import { Inter } from "next/font/google";
+
 import "./globals.css";
-import HeaderNav from "@/components/HeaderNav";
-import FooterNav from "@/components/FooterNav";
-import Nav from "@/components/Nav";
+import dynamic from 'next/dynamic';
+const HeaderNav = dynamic(() => import('@/components/HeaderNav'), { ssr: false });
+
+import FooterNav from "@/components/FooterNav"
+// import HeaderNav from "@/components/HeaderNav"
 import Providers from "./provider";
 
-const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
   title: "Lazy Nft",
@@ -15,11 +16,11 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body>
         <Providers>
           <main>
-            <Nav />
-            {/* <HeaderNav /> */}
+
+            <HeaderNav />
             <div className="">
               {children}
             </div>

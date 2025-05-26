@@ -1,10 +1,13 @@
 "use client"
 
 import React, { useEffect, useState } from 'react';
+import dynamic from 'next/dynamic'
+
+
 import MARKETPLACE_ABI from '@/utils/marketPlaceAbi';
 import { MARKETPLACE_CONTRACT } from '@/config/constants';
 import { writeContract } from '@wagmi/core'
-import Modal from './Modal';
+const Modal = dynamic(() => import('./Modal'), { ssr: false })
 import { config } from '@/utils/wagmi';
 import { useAccount, } from 'wagmi'
 

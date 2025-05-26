@@ -14,7 +14,7 @@ import { config } from '@/utils/wagmi';
 const HeaderNav = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const { open } = useWeb3Modal();
+  const { open } = typeof window !== 'undefined' ? useWeb3Modal() : { open: () => { } };
   const { disconnect } = useDisconnect();
   const account = useAccount();
 
@@ -37,7 +37,7 @@ const HeaderNav = () => {
   }, [account]);
 
   return (
-    <header className="p-4 lg:px-32 flex justify-between items-center bg-[#0D0516] shadow-md relative">
+    <header className="p-4 lg:px-32 flex  justify-between items-center bg-[#0D0516] shadow-md relative">
       <Link href="/">
         <img src="/images/LABSS.png" alt="Logo" className="h-10" />
       </Link>
