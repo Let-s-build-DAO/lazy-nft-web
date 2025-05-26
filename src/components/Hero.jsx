@@ -11,11 +11,14 @@ import { useAccount, } from 'wagmi'
 
 
 const Hero = () => {
-  const [claimable, setClaimable] = useState([])
   const [modal, setModal] = useState(false)
   const account = useAccount()
   const [show, setShow] = useState(false)
 
+
+  if (typeof window !== 'undefined') {
+    // Safe to use HTMLElement or document
+  }
 
   // console.log(contract)
 
