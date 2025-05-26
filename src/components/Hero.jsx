@@ -50,8 +50,8 @@ const Hero = () => {
   }
 
   return (
-    <section className=" text-white min-h-screen flex items-center justify-center p-8">
-      <div className="max-w-5xl w-full flex flex-col md:flex-row items-center gap-10">
+    <section className="text-white min-h-screen flex items-center justify-center p-8">
+      <div className="max-w-6xl w-full flex flex-col md:flex-row items-center gap-10">
         <div className="flex-1">
           <img src="/images/nft-6.jpg" alt="NFT Character" className="rounded-2xl shadow-lg w-full max-w-md mx-auto" />
         </div>
