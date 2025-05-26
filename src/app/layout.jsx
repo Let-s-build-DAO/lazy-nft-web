@@ -9,7 +9,7 @@ import Providers from "./provider";
 
 
 export const metadata = {
-  title: "Lazy Nft",
+  title: "Let's Build DAO | Lazy Nft's",
   description: "",
 };
 
