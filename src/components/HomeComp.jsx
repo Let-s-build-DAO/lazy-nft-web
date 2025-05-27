@@ -26,15 +26,15 @@ const queryClient = new QueryClient();
 export default function HomeComp() {
   const initialState = cookieToInitialState(config)
 
-    useEffect(() => {
-    if (typeof window !== 'undefined') {
-      createWeb3Modal({
-        wagmiConfig: config,
-        projectId,
-        enableAnalytics: true,
-        enableOnramp: true
-      });
-    }
+  useEffect(() => {
+    // if (typeof window !== 'undefined') {
+    createWeb3Modal({
+      wagmiConfig: config,
+      projectId,
+      enableAnalytics: true,
+      enableOnramp: true
+    });
+    // }
   }, []);
 
   return (
