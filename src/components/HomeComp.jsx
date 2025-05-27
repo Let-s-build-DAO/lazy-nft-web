@@ -8,6 +8,7 @@ import { createWeb3Modal } from '@web3modal/wagmi/react'
 // import { config } from "@/utils/wagmi";
 import { projectId, config } from "@/config";
 import { cookieToInitialState } from 'wagmi'
+import FooterNav from './FooterNav';
 const HeaderNav = dynamic(() => import('./HeaderNav'), { ssr: false });
 const Hero = dynamic(() => import('./Hero'), {
   ssr: false, // Disable SSR for this component
@@ -31,6 +32,7 @@ export default function HomeComp() {
         <QueryClientProvider client={queryClient}>
           <HeaderNav />
           <Hero />
+          <FooterNav />
         </QueryClientProvider>
       </WagmiProvider>
     </main>
