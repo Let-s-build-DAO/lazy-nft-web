@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import dynamic from 'next/dynamic'
 
-import { useWeb3Modal } from '@web3modal/wagmi/react';
+
 import MARKETPLACE_ABI from '@/utils/marketPlaceAbi';
 import { MARKETPLACE_CONTRACT } from '@/config/constants';
 import { writeContract } from '@wagmi/core'
@@ -16,7 +16,6 @@ const Hero = () => {
   const [modal, setModal] = useState(false)
   const account = useAccount()
   const [show, setShow] = useState(false)
-  const { open } = useWeb3Modal()
 
   const getClaimable = async () => {
     // const data = await contract.fetchClaimableItems()
@@ -59,8 +58,6 @@ const Hero = () => {
             <br />
             Build it lazy! <br /> Build it anyways
           </p>
-
-          <button onClick={() => open()}>connect</button>
 
           <button onClick={() => { account.isConnected ? claimNft() : setShow(true) }} className="inline-block btn transition text-white font-semibold px-6 py-3 rounded-xl">
             Claim Nft

@@ -1,7 +1,5 @@
 'use client'
 
-
-import dynamic from 'next/dynamic';
 import { WagmiProvider } from "wagmi";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { createWeb3Modal } from '@web3modal/wagmi/react'
