@@ -6,7 +6,7 @@ const HeaderNav = dynamic(() => import('@/components/HeaderNav'), { ssr: false }
 import FooterNav from "@/components/FooterNav"
 // import HeaderNav from "@/components/HeaderNav"
 // import Providers from "./provider";
-const Providers = dynamic(() => import('./Provider'), { ssr: false })
+const Providers = dynamic(() => import('./provider'), { ssr: false })
 
 
 export const metadata = {
