@@ -5,8 +5,8 @@ import dynamic from 'next/dynamic';
 import { WagmiProvider } from "wagmi";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { createWeb3Modal } from '@web3modal/wagmi/react'
-import { config } from "@/utils/wagmi";
-import { projectId } from "@/config";
+// import { config } from "@/utils/wagmi";
+import { projectId, config } from "@/config";
 import { cookieToInitialState } from 'wagmi'
 const HeaderNav = dynamic(() => import('./HeaderNav'), { ssr: false });
 const Hero = dynamic(() => import('./Hero'), {
