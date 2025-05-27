@@ -1,26 +1,16 @@
-'use client';
-
-import React, { useEffect, useState } from 'react';
+// import HomeComp from '@/components/HomeComp';
+import React from 'react';
+import dynamic from 'next/dynamic';
 import Loader from '@/components/Loader';
-import HomeComp from '@/components/HomeComp';
+const HomeComp = dynamic(() => import('@/components/HomeComp'), {
+  ssr: false,
+  loading: () => <Loader />,
+});
 
 const Home = () => {
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    // Simulate loading delay for effect (optional)
-    const timeout = setTimeout(() => {
-      setIsLoading(false);
-    }, 500); // You can adjust or remove delay
-
-    return () => clearTimeout(timeout);
-  }, []);
-
-  if (isLoading) {
-    return <Loader />;
-  }
-
-  return <HomeComp />;
+  return (
+    <HomeComp />
+  );
 };
 
 export default Home;
