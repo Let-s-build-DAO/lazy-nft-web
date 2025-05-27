@@ -4,20 +4,18 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { createWeb3Modal } from '@web3modal/wagmi/react'
 import { config } from "@/utils/wagmi";
 import { projectId } from "@/config";
-import { useEffect } from "react";
 
-export default function Providers({ children }) {
+createWeb3Modal({
+  wagmiConfig: config,
+  projectId,
+  enableAnalytics: true, // Optional - defaults to your Cloud configuration
+  enableOnramp: true // Optional - false as default
+})
+
+export default function Providers({ 
+  children,
+ }) {
   const queryClient = new QueryClient();
-
-  useEffect(() => {
-    // Run only in the browser
-    createWeb3Modal({
-      wagmiConfig: config,
-      projectId,
-      enableAnalytics: true,
-      enableOnramp: true
-    });
-  }, []);
 
   return (
     <WagmiProvider config={config}>
@@ -25,5 +23,5 @@ export default function Providers({ children }) {
         {children}
       </QueryClientProvider>
     </WagmiProvider>
-  );
-}
+  )
+ }
