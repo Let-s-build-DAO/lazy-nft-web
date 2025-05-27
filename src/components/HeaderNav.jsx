@@ -14,7 +14,7 @@ import { config } from '@/utils/wagmi';
 const HeaderNav = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const { open } = typeof window !== 'undefined' ? useWeb3Modal() : { open: () => { } };
+  const { open } = useWeb3Modal()
   const { disconnect } = useDisconnect();
   const account = useAccount();
 
