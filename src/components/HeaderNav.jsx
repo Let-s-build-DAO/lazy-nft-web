@@ -15,7 +15,7 @@ const HeaderNav = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const { open } = useWeb3Modal()
-  // const { disconnect } = useDisconnect();
+  const { disconnect } = useDisconnect();
   const account = useAccount();
 
   const toggleMenu = () => setMenuOpen(!menuOpen);
