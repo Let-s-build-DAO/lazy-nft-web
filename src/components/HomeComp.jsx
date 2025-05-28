@@ -14,12 +14,12 @@ import Hero from './Hero'
 
 const queryClient = new QueryClient();
 
-// createWeb3Modal({
-//   wagmiConfig: config,
-//   projectId,
-//   enableAnalytics: true, // Optional - defaults to your Cloud configuration
-//   enableOnramp: true // Optional - false as default
-// })
+createWeb3Modal({
+  wagmiConfig: config,
+  projectId,
+  enableAnalytics: true, // Optional - defaults to your Cloud configuration
+  enableOnramp: true // Optional - false as default
+})
 
 export default function HomeComp() {
   const initialState = cookieToInitialState(config)
@@ -28,12 +28,12 @@ export default function HomeComp() {
 
   useEffect(() => {
     // if (typeof window !== 'undefined') {
-    createWeb3Modal({
-      wagmiConfig: config,
-      projectId,
-      enableAnalytics: true,
-      enableOnramp: true,
-    })
+    // createWeb3Modal({
+    //   wagmiConfig: config,
+    //   projectId,
+    //   enableAnalytics: true,
+    //   enableOnramp: true,
+    // })
     setMounted(true)
     // }
   }, [])
