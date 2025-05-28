@@ -34,6 +34,6 @@ export const projectId = process.env.NEXT_PUBLIC_CONNECT_WALLET_ID
 export const config = getDefaultConfig({
   appName: 'Lazy NFT',
   projectId: projectId,
-  chains: [lisk, liskSepolia, rootstock, rootstockTestnet],
+  chains: [lisk],
   ssr: true, // If your dApp uses server side rendering (SSR)
 });
