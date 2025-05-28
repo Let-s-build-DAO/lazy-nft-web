@@ -79,7 +79,10 @@ const HeaderNav = () => {
         <div className="absolute top-full left-0 w-full bg-[#150824] z-50 py-6 space-y-4 text-center md:hidden">
           <Link href="/" className="block text-sm" onClick={toggleMenu}>Home</Link>
           <Link href="https://academy.letsbuilddao.org/" className="block text-sm" onClick={toggleMenu}>Academy</Link>
-          {account.isConnected ? (
+
+          <ConnectButton />
+
+          {/* {account.isConnected ? (
             <button
               onClick={() => { toggleMenu(); toggleDropdown(); }}
               className="flex items-center mx-auto border-2 border-[#40196C] px-4 py-2 rounded-full text-sm"
@@ -94,7 +97,7 @@ const HeaderNav = () => {
             >
               Connect Wallet
             </button>
-          )}
+          )} */}
         </div>
       )}
 
