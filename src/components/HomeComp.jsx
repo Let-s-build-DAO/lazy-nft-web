@@ -14,7 +14,6 @@ const queryClient = new QueryClient();
 export default function HomeComp() {
   const initialState = cookieToInitialState(config)
 
-
   return (
     <main className="">
       <WagmiProvider config={config} initialState={initialState}>
