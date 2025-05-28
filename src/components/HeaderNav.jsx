@@ -57,7 +57,7 @@ const HeaderNav = () => {
           </button>
         ) : (
           <button
-            onClick={open}
+            // onClick={open}
             className="border-2 border-[#40196C] px-6 py-2 rounded-full text-sm hover:bg-[#40196C]/10"
           >
             Connect Wallet
@@ -87,7 +87,7 @@ const HeaderNav = () => {
             </button>
           ) : (
             <button
-              onClick={() => { toggleMenu(); open(); }}
+              // onClick={() => { toggleMenu(); open(); }}
               className="border-2 border-[#40196C] px-6 py-2 rounded-full text-sm"
             >
               Connect Wallet
