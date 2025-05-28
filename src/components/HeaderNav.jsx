@@ -80,8 +80,9 @@ const HeaderNav = () => {
           <Link href="/" className="block text-sm" onClick={toggleMenu}>Home</Link>
           <Link href="https://academy.letsbuilddao.org/" className="block text-sm" onClick={toggleMenu}>Academy</Link>
 
-          <ConnectButton />
-
+          <div className='flex justify-center'>
+            <ConnectButton />
+          </div>
           {/* {account.isConnected ? (
             <button
               onClick={() => { toggleMenu(); toggleDropdown(); }}
