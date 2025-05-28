@@ -27,15 +27,15 @@ export default function HomeComp() {
   const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      createWeb3Modal({
-        wagmiConfig: config,
-        projectId,
-        enableAnalytics: true,
-        enableOnramp: true,
-      })
-      setMounted(true)
-    }
+    // if (typeof window !== 'undefined') {
+    createWeb3Modal({
+      wagmiConfig: config,
+      projectId,
+      enableAnalytics: true,
+      enableOnramp: true,
+    })
+    setMounted(true)
+    // }
   }, [])
 
   if (!mounted) return <Loader /> // or show a loader here
