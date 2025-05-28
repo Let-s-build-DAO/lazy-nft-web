@@ -22,9 +22,9 @@ export const config = createConfig({
   ssr: true
 })
 
-createWeb3Modal({
-  wagmiConfig: config,
-  projectId,
-  enableAnalytics: true, // Optional - defaults to your Cloud configuration
-  enableOnramp: true // Optional - false as default
-})
+// createWeb3Modal({
+//   wagmiConfig: config,
+//   projectId,
+//   enableAnalytics: true, // Optional - defaults to your Cloud configuration
+//   enableOnramp: true // Optional - false as default
+// })
