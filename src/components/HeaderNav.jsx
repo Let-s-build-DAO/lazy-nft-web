@@ -9,6 +9,7 @@ import { readContract } from '@wagmi/core';
 import MarkeplaceAbi from '../utils/marketPlaceAbi';
 import { MARKETPLACE_CONTRACT } from '@/config/constants';
 import { config } from '@/utils/wagmi';
+import { ConnectButton } from '@rainbow-me/rainbowkit';
 
 
 const HeaderNav = () => {
@@ -46,8 +47,9 @@ const HeaderNav = () => {
       <nav className="hidden md:flex items-center space-x-8">
         <Link href="/" className="text-sm hover:text-purple-400 transition">Home</Link>
         <Link href="https://academy.letsbuilddao.org/" className="text-sm hover:text-purple-400 transition">Academy</Link>
+        <ConnectButton />
 
-        {account.isConnected ? (
+        {/* {account.isConnected ? (
           <button
             onClick={toggleDropdown}
             className="flex items-center border-2 border-[#40196C] px-4 py-2 rounded-full text-sm hover:bg-[#40196C]/10"
@@ -62,7 +64,7 @@ const HeaderNav = () => {
           >
             Connect Wallet
           </button>
-        )}
+        )} */}
       </nav>
 
       {/* Mobile Menu Button */}

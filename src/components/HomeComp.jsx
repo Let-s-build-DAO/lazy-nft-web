@@ -7,6 +7,10 @@ import { cookieToInitialState } from 'wagmi'
 import FooterNav from './FooterNav';
 import HeaderNav from './HeaderNav'
 import Hero from './Hero'
+import '@rainbow-me/rainbowkit/styles.css';
+import {
+  RainbowKitProvider,
+} from '@rainbow-me/rainbowkit';
 
 const queryClient = new QueryClient();
 
@@ -18,9 +22,11 @@ export default function HomeComp() {
     <main className="">
       <WagmiProvider config={config} initialState={initialState}>
         <QueryClientProvider client={queryClient}>
-          <HeaderNav />
-          <Hero />
-          <FooterNav />
+          <RainbowKitProvider>
+            <HeaderNav />
+            <Hero />
+            <FooterNav />
+          </RainbowKitProvider>
         </QueryClientProvider>
       </WagmiProvider>
     </main>
