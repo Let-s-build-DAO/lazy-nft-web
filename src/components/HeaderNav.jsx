@@ -40,7 +40,7 @@ const HeaderNav = () => {
   return (
     <header className="p-4 lg:px-32 flex  justify-between items-center bg-[#0D0516] shadow-md relative">
       <Link href="/">
-        <img src="/images/LABSS.png" alt="Logo" className="h-10" />
+        <img src="/images/new-logo.png" alt="Logo" className="h-12" />
       </Link>
 
       {/* Desktop Nav */}

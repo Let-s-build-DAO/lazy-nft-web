@@ -1,55 +1,70 @@
-"use client"
+"use client";
 
-import React, { useEffect, useState } from 'react';
-import dynamic from 'next/dynamic'
+import React, { useEffect, useState } from "react";
+import dynamic from "next/dynamic";
+import { ConnectButton } from "@rainbow-me/rainbowkit";
+import { writeContract } from "@wagmi/core";
+import { useAccount } from "wagmi";
+import { motion } from "framer-motion";
 
+import MARKETPLACE_ABI from "@/utils/marketPlaceAbi";
+import { MARKETPLACE_CONTRACT } from "@/config/constants";
+import { config } from "@/utils/wagmi";
 
-import MARKETPLACE_ABI from '@/utils/marketPlaceAbi';
-import { MARKETPLACE_CONTRACT } from '@/config/constants';
-import { writeContract } from '@wagmi/core'
-const Modal = dynamic(() => import('./Modal'), { ssr: false })
-import { config } from '@/utils/wagmi';
-import { useAccount, } from 'wagmi'
-
+const Modal = dynamic(() => import("./Modal"), { ssr: false });
 
 const Hero = () => {
-  const [modal, setModal] = useState(false)
-  const account = useAccount()
-  const [show, setShow] = useState(false)
+  const [modal, setModal] = useState(false);
+  const [show, setShow] = useState(false);
+  const account = useAccount();
 
   const getClaimable = async () => {
-    // const data = await contract.fetchClaimableItems()
-    // // console.log(data)
-    // setClaimable(data)
-
-  }
+    // Placeholder for potential future logic
+  };
 
   useEffect(() => {
-    getClaimable()
-  }, [])
+    getClaimable();
+  }, []);
 
   const claimNft = async () => {
     const result = await writeContract(config, {
       abi: MARKETPLACE_ABI,
       address: MARKETPLACE_CONTRACT,
-      functionName: 'claimNft',
-      args: [
-        1n,
-      ],
-    })
+      functionName: "claimNft",
+      args: [1n],
+    });
 
-    console.log(result)
-    setModal(true)
-  }
+    console.log(result);
+    setModal(true);
+  };
 
   return (
     <section className="text-white min-h-screen flex items-center justify-center p-8">
-      <div className="max-w-6xl w-full flex flex-col md:flex-row items-center gap-10">
-        <div className="flex-1">
-          <img src="/images/nft-6.jpg" alt="NFT Character" className="rounded-2xl shadow-lg w-full max-w-md mx-auto" />
-        </div>
+      <motion.div
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        className="max-w-6xl w-full flex flex-col md:flex-row items-center gap-10"
+      >
+        <motion.div
+          className="flex-1"
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 0.3, duration: 0.6 }}
+        >
+          <img
+            src="/images/nft-6.jpg"
+            alt="NFT Character"
+            className="rounded-2xl shadow-lg w-full max-w-md mx-auto"
+          />
+        </motion.div>
 
-        <div className="flex-1 text-center md:text-left">
+        <motion.div
+          className="flex-1 text-center md:text-left"
+          initial={{ opacity: 0, x: 50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: 0.5, duration: 0.7 }}
+        >
           <h1 className="text-4xl md:text-5xl font-bold leading-tight mb-4">
             Unlock the Future with Lazy NFTs
           </h1>
@@ -59,31 +74,55 @@ const Hero = () => {
             Build it lazy! <br /> Build it anyways
           </p>
 
-          <button onClick={() => { account.isConnected ? claimNft() : setShow(true) }} className="inline-block btn transition text-white font-semibold px-6 py-3 rounded-xl">
-            Claim Nft
-          </button>
-        </div>
-      </div>
+          {account.isConnected ? (
+            <motion.button
+              onClick={claimNft}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="inline-block btn transition text-white font-semibold px-6 py-3 rounded-xl"
+            >
+              Claim NFT
+            </motion.button>
+          ) : (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1 }}
+              className="lg:block flex justify-center"
+            >
+              <ConnectButton />
+            </motion.div>
+          )}
+        </motion.div>
+      </motion.div>
+
       <Modal isOpen={modal} onClose={() => setModal(false)}>
         <h2 className="text-2xl font-semibold mb-4"></h2>
-        <p className="mb-4 text-[#0D0516] text-xl text-center">You have claimed our NFT, to continue your registration on our academy, click the button below.</p>
+        <p className="mb-4 text-[#0D0516] text-xl text-center">
+          You have claimed our NFT, to continue your registration on our academy, click the button below.
+        </p>
         <div className="flex justify-center">
           <a
             href="https://lets-build-academy.vercel.app/auth"
             target="_blank"
             rel="noopener noreferrer"
           >
-            <button className='btn p-3 rounded-md text-white px-6'>Continue Registration</button>
+            <button className="btn p-3 rounded-md text-white px-6">
+              Continue Registration
+            </button>
           </a>
         </div>
       </Modal>
 
-      <Modal isOpen={show} onClose={() => setShow(false)}>
-        <h2 className="text-2xl text-[#0D0516] text-center font-semibold mb-4">Hello there!</h2>
-        <p className="mb-4 text-[#0D0516] text-xl text-center">It looks like you tried to claim the NFT without connecting your wallet. Please click "Connect Wallet" in the header to continue and complete your claim.</p>
-      </Modal>
+      {/* <Modal isOpen={show} onClose={() => setShow(false)}>
+        <h2 className="text-2xl text-[#0D0516] text-center font-semibold mb-4">
+          Hello there!
+        </h2>
+        <p className="mb-4 text-[#0D0516] text-xl text-center">
+          It looks like you tried to claim the NFT without connecting your wallet. Please click "Connect Wallet" in the header to continue and complete your claim.
+        </p>
+      </Modal> */}
     </section>
-
   );
 };
 
