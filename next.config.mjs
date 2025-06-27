@@ -1,8 +1,15 @@
-// next.config.mjs
-
-
+// next.config.js
 const nextConfig = {
-  reactStrictMode: true,
-}
+  webpack: (config) => {
+    config.module.rules.push({
+      test: /\.js$/,
+      type: 'javascript/esm',
+      resolve: {
+        fullySpecified: false,
+      },
+    });
+    return config;
+  },
+};
 
-export default nextConfig;
+module.exports = nextConfig;
