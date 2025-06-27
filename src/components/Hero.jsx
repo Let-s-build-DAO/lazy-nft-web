@@ -103,7 +103,7 @@ const Hero = () => {
         </p>
         <div className="flex justify-center">
           <a
-            href="https://lets-build-academy.vercel.app/auth"
+            href="https://academy.letsbuilddao.org/auth"
             target="_blank"
             rel="noopener noreferrer"
           >
