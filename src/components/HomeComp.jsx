@@ -1,12 +1,15 @@
 'use client'
 
+import dynamic from "next/dynamic";
 import { WagmiProvider } from "wagmi";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { config } from "@/utils/wagmi";
 import { cookieToInitialState } from 'wagmi'
 import FooterNav from './FooterNav';
 import HeaderNav from './HeaderNav'
-import Hero from './Hero'
+const Hero = dynamic(() => import("./Hero"), { ssr: false });
+
+// import Hero from './Hero'
 import '@rainbow-me/rainbowkit/styles.css';
 import {
   RainbowKitProvider,
