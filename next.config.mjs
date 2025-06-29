@@ -4,6 +4,7 @@ import webpack from 'webpack';
 
 const nextConfig = {
   reactStrictMode: true,
+  swcMinify: false,
   webpack: (config, { buildId, dev, isServer, defaultLoaders }) => {
     config.plugins.push(new webpack.ProvidePlugin({
       $: 'jquery',
